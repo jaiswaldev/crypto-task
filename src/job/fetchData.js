@@ -11,10 +11,10 @@ const fetchData = async () => {
             try {
                 await Crypto.findOneAndUpdate(
                     { 
-                      name: crypto.name 
+                      name: new RegExp(`^${crypto.name}$`, 'i')
                     }, 
                     {
-                        name: crypto.name,
+                        name: crypto.name.charAt(0).toLowerCase() + crypto.name.slice(1),
                         price_usd: crypto.priceUsd,
                         market_cap_usd: crypto.marketCapUsd,
                         change_24h: crypto.changePercent24Hr,
